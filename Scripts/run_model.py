@@ -13,7 +13,7 @@ from run_and_visualize_w_scores import generate_visualiation
 # all the parameters of importance, ignore the others
 N, L = 20, 20  # number of agetns, arena size
 speed, dt = 5, 0.01  # speed, time step size
-duration = 30  # duration of the video
+duration = 50  # duration of the video
 zor, zoo, zoa = 2, 2, 4  # zones of repulsion, orientation, attraction in m
 max_turn_rate = 3  # turning rate in rad/s
 fov = np.pi / 4  # frontal range of sample, +/- fov

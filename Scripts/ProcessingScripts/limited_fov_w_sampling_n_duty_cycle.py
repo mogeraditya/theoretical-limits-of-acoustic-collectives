@@ -25,12 +25,16 @@ def step_w_fov_w_sampling_w_noise(
     for i in range(N):
 
         if current_time >= sample_times[i]:
-            d = x - x[i]  # vector from agent to others
-            d -= L * np.round(d / L)  # open arena/ change for bounded
+            vector_to_agents = x - x[i]  # vector from agent to others
+            vector_to_agents -= L * np.round(
+                vector_to_agents / L
+            )  # open arena/ change for bounded
             r = np.linalg.norm(d, axis=1)  # distance from agent to everyone else
 
             r[i] = np.inf  # distance to self is inflated :flush:
-            unit = d / np.maximum(r[:, None], 1e-12)  # unit vector from agent to others
+            unit = vector_to_agents / np.maximum(
+                r[:, None], 1e-12
+            )  # unit vector from agent to others
 
             visible = (unit @ v[i]) >= np.cos(fov)  # check if agent is within fov
 
