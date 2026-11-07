@@ -1,4 +1,8 @@
+import sys
+
 import numpy as np
+
+sys.path.append("./Scripts/ProcessingScripts/")
 from base_couzin import step_base_couzin
 from common_functions import initialize
 from limited_fov import step_w_fov
