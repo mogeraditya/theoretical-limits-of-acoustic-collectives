@@ -46,54 +46,54 @@ generate_visualiation(
     x, v, step_w_fov, model_input, duration=duration, name="limited fov"
 )
 
-x, v = initialize(N, L)
-sample_times = np.random.uniform(0, ipi, N)
-desired_directions = v.copy()
+# x, v = initialize(N, L)
+# sample_times = np.random.uniform(0, ipi, N)
+# desired_directions = v.copy()
 
-model_input_copy = model_input.copy()
-model_input_copy.extend([sample_times, desired_directions, ipi, ipi_noise])
+# model_input_copy = model_input.copy()
+# model_input_copy.extend([sample_times, desired_directions, ipi, ipi_noise])
 
-generate_visualiation(
-    x,
-    v,
-    step_w_fov_w_sampling,
-    model_input_copy,
-    duration=duration,
-    name=f"limited fov with sparse sampling, ipi {ipi}s",
-)
+# generate_visualiation(
+#     x,
+#     v,
+#     step_w_fov_w_sampling,
+#     model_input_copy,
+#     duration=duration,
+#     name=f"limited fov with sparse sampling, ipi {ipi}s",
+# )
 
 
-x, v = initialize(N, L)
-sample_times = np.random.uniform(0, small_ipi, N)
-desired_directions = v.copy()
+# x, v = initialize(N, L)
+# sample_times = np.random.uniform(0, small_ipi, N)
+# desired_directions = v.copy()
 
-model_input_copy = model_input.copy()
-model_input_copy.extend([sample_times, desired_directions, small_ipi, ipi_noise])
+# model_input_copy = model_input.copy()
+# model_input_copy.extend([sample_times, desired_directions, small_ipi, ipi_noise])
 
-generate_visualiation(
-    x,
-    v,
-    step_w_fov_w_sampling,
-    model_input_copy,
-    duration=duration,
-    name=f"limited fov with sparse sampling, ipi {small_ipi}s",
-)
+# generate_visualiation(
+#     x,
+#     v,
+#     step_w_fov_w_sampling,
+#     model_input_copy,
+#     duration=duration,
+#     name=f"limited fov with sparse sampling, ipi {small_ipi}s",
+# )
 
-x, v = initialize(N, L)
-sample_times = np.random.uniform(0, smaller_ipi, N)
-desired_directions = v.copy()
+# x, v = initialize(N, L)
+# sample_times = np.random.uniform(0, smaller_ipi, N)
+# desired_directions = v.copy()
 
-model_input_copy = model_input.copy()
-model_input_copy.extend([sample_times, desired_directions, smaller_ipi, ipi_noise])
+# model_input_copy = model_input.copy()
+# model_input_copy.extend([sample_times, desired_directions, smaller_ipi, ipi_noise])
 
-generate_visualiation(
-    x,
-    v,
-    step_w_fov_w_sampling,
-    model_input_copy,
-    duration=duration,
-    name=f"limited fov with sparse sampling, ipi {smaller_ipi}s",
-)
+# generate_visualiation(
+#     x,
+#     v,
+#     step_w_fov_w_sampling,
+#     model_input_copy,
+#     duration=duration,
+#     name=f"limited fov with sparse sampling, ipi {smaller_ipi}s",
+# )
 
 
 ##### WITH NOISEEEE #######
