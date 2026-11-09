@@ -84,5 +84,7 @@ def generate_visualiation(
     animation = FuncAnimation(
         fig, animate, frames=frames, interval=30, blit=False, cache_frame_data=False
     )
-    animation.save(f"./Output/w_scores/{name}.mp4", writer="ffmpeg", fps=30)
+    animation.save(
+        f"./Output/w_scores/{model_input[0]}_agents/{name}.mp4", writer="ffmpeg", fps=30
+    )
     plt.close(fig)
