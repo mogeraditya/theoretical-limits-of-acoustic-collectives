@@ -29,7 +29,9 @@ def step_w_fov_w_sampling_w_noise(
             vector_to_agents -= L * np.round(
                 vector_to_agents / L
             )  # open arena/ change for bounded
-            r = np.linalg.norm(d, axis=1)  # distance from agent to everyone else
+            r = np.linalg.norm(
+                vector_to_agents, axis=1
+            )  # distance from agent to everyone else
 
             r[i] = np.inf  # distance to self is inflated :flush:
             unit = vector_to_agents / np.maximum(
