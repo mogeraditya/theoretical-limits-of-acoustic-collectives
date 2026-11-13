@@ -5,7 +5,7 @@ from matplotlib.patches import Polygon
 
 
 def generate_visualiation(
-    x, v, model, model_input, duration=10000, name="couzin_simulation", size=1
+    x, v, model, model_input, duration=10000, name="couzin_simulation", size=0.5
 ):
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
     ax1.set(xlim=(0, model_input[1]), ylim=(0, model_input[1]), aspect="equal")
