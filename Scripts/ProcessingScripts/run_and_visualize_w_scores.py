@@ -1,15 +1,22 @@
+import os
+
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.animation import FuncAnimation
 from matplotlib.patches import Polygon
 
+try:
+    from tqdm import tqdm
+except ImportError:  # fall back to a plain text bar
+    tqdm = None
+
 
 def generate_visualiation(
-    x, v, model, model_input, duration=10000, name="couzin_simulation", size=0.5
+    x, v, model, model_input, duration=10000, name="couzin_simulation", size=0.08
 ):
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
     ax1.set(xlim=(0, model_input[1]), ylim=(0, model_input[1]), aspect="equal")
-    ax1.set_title(f"couzin model simulation: {name}")
+    ax1.set_title(f"Theoretical simulation: {name}")
     ax2.set_xlim(0, duration)
     ax2.set_ylim(0, 1.1)
     ax2.set_title("pol timesreis")
@@ -49,7 +56,7 @@ def generate_visualiation(
         global_polarization.append(global_p)
 
         local_p = []
-        zoa = model_input[6]
+        zoa = model_input[5]
         for i in range(model_input[0]):
             dist = np.linalg.norm(x - x[i], axis=1)
             neighbors = dist < zoa if zoa > 1e-12 else dist < 2
@@ -82,9 +89,36 @@ def generate_visualiation(
         draw_the_triangle(i)
 
     animation = FuncAnimation(
-        fig, animate, frames=frames, interval=30, blit=False, cache_frame_data=False
+        fig, animate, frames=frames, interval=1, blit=False, cache_frame_data=False
     )
-    animation.save(
-        f"./Output/w_scores/{model_input[0]}_agents/{name}.mp4", writer="ffmpeg", fps=30
-    )
-    plt.close(fig)
+    plt.show()
+
+    # if tqdm is not None:
+    #     pbar = tqdm(total=frames, desc=name.split("\n")[0][:40], unit="frame")
+
+    #     def progress(_i, _n):
+    #         pbar.update(1)
+
+    #     finish = pbar.close
+
+    # else:
+
+    #     def progress(i, n):
+    #         done = int(30 * (i + 1) / n)
+    #         print(f"\r[{'#' * done}{'.' * (30 - done)}] {i + 1}/{n}", end="", flush=True)
+
+    #     finish = print  # newline after the bar
+
+    # # title can hold "/" (rad/s) and "\n"; make a safe filename from it
+    # out_dir = f"./Output/w_scores/{model_input[0]}_agents"
+    # os.makedirs(out_dir, exist_ok=True)
+    # file_name = " ".join(name.replace("/", " per ").split())
+
+    # animation.save(
+    #     f"{out_dir}/{file_name}.mp4",
+    #     writer="ffmpeg",
+    #     fps=10,
+    #     progress_callback=progress,
+    # )
+    # finish()
+    # plt.close(fig)
